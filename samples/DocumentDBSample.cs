@@ -47,9 +47,9 @@ namespace DocumentDbSample
         }
         public static async Task<DocumentCollection> CreateOrReadCollection(Database database,string collectionName)
         {
-            if (client.CreateDocumentCollectionQuery(database.SelfLink).Where(c => c.Id == "EmployeeList").ToArray().Any())
+            if (client.CreateDocumentCollectionQuery(database.SelfLink).Where(c => c.Id == collectionName).ToArray().Any())
             {
-                return client.CreateDocumentCollectionQuery(database.SelfLink).Where(c => c.Id == "EmployeeList").ToArray().FirstOrDefault();
+                return client.CreateDocumentCollectionQuery(database.SelfLink).Where(c => c.Id == collectionName).ToArray().FirstOrDefault();
             }
             return await client.CreateDocumentCollectionAsync(database.SelfLink, new DocumentCollection { Id = collectionName });
         }
